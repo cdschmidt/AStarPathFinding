@@ -8,30 +8,30 @@ public class UGrid : MonoBehaviour
 {
     // Start is called before the first frame update
     private AStar astar;
-    public Material obsticalMat;
+    public Material obstacleMat;
     public bool drawPRM = true;
     public int numNodes;
-    public int numObsticals;
+    public int numObstacles;
     public float width;
     public float height;
     public List<Node> nodes;
-    private GameObject[] obsticals;
+    private GameObject[] obstacles;
     public Transform player;
     public float playerSpeed = 10;
     private Animator animator;
     void Awake()
     {
-        obsticals = new GameObject[numObsticals];
-        for (int i = 0; i < numObsticals; i++) {
-            obsticals[i] = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        obstacles = new GameObject[numObstacles];
+        for (int i = 0; i < numObstacles; i++) {
+            obstacles[i] = GameObject.CreatePrimitive(PrimitiveType.Cube);
             var pos = new Vector3(Random.Range(-width/2.2f, width/2.2f), 1, Random.Range(-height/2.2f, height/2.2f));
             var scale = new Vector3(Random.Range(1, 10), 2, Random.Range(1, 10));
-            obsticals[i].transform.position = pos;
-            obsticals[i].transform.localScale = scale;
-            var boxCollider = obsticals[i].GetComponent<BoxCollider>();
+            obstacles[i].transform.position = pos;
+            obstacles[i].transform.localScale = scale;
+            var boxCollider = obstacles[i].GetComponent<BoxCollider>();
             boxCollider.size = new Vector3(1 + (1 / scale.x), 1, 1 + (1 / scale.z));
-            var rend = obsticals[i].GetComponent<Renderer>();
-            rend.material = obsticalMat;
+            var rend = obstacles[i].GetComponent<Renderer>();
+            rend.material = obstacleMat;
         }
         nodes = new List<Node>();
         bool addNode = true;
@@ -39,7 +39,7 @@ public class UGrid : MonoBehaviour
         {
             addNode = true;
             var pos = new Vector3(Random.Range(-width/2, width/2), 0, Random.Range(-height/2, height/2));
-            foreach (var obstical in obsticals)
+            foreach (var obstical in obstacles)
             {
                 var col = obstical.GetComponent<Collider>();
                 if (col.bounds.Contains(pos))
@@ -63,6 +63,21 @@ public class UGrid : MonoBehaviour
         animator = player.GetComponent<Animator>();
     }
 
+    public void RemoveBadNodes()
+    {
+        for(int i = 0; i < nodes.Count; i++)
+        {
+            foreach (var obstical in obstacles)
+            {
+                var col = obstical.GetComponent<Collider>();
+                if (col.bounds.Contains(nodes[i].pos))
+                {
+                    print("removed Node");
+                    nodes.Remove(nodes[i]);
+                }
+            }
+        }
+    }
     public void AddNeighbors()
     {
         for (int i = 0; i < nodes.Count; i++)

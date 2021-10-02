@@ -305,7 +305,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810651165}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -55.11, y: 0, z: -55.69}
+  m_LocalPosition: {x: -51.62, y: 0, z: -52.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -459,10 +459,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1716814b1e079054289c2991055f9ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obsticalMat: {fileID: 2100000, guid: 000231b10d1215742893f91b6c0f24b8, type: 2}
+  obstacleMat: {fileID: 2100000, guid: 000231b10d1215742893f91b6c0f24b8, type: 2}
   drawPRM: 1
   numNodes: 100
-  numObsticals: 50
+  numObstacles: 30
   width: 100
   height: 100
   player: {fileID: 1037368163}
@@ -745,7 +745,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2109948673}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 56, y: 0, z: 54.6}
+  m_LocalPosition: {x: 55.9, y: 0, z: 53.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

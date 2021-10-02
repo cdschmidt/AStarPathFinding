@@ -63,6 +63,7 @@ public class AStar : MonoBehaviour
             grid.nodes.Remove(deleteStartNode);
         if(deleteTheGoalNode)
             grid.nodes.Remove(deleteGoalNode);
+        grid.RemoveBadNodes();
         grid.AddNeighbors();
         
         List<Node> path = new List<Node>();
